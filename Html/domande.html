@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Quiz Conflitto Israele-Palestina</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Css/Domande.css">
+</head>
+<body>
+  <img src="../Img/Corona.png" class="crown-img crown-left" alt="Corona sinistra">
+  <img 
+  src="../Img/X.jpg"
+  id="close-btn"
+  alt="Chiudi"
+  title="Torna alla Home">
+
+
+  <div class="card">
+    <div id="timer-container">
+      <div id="timer-bar"></div>
+    </div>
+
+    <div class="question-box">
+      <img src="" alt="" class="question-image" id="question-image">
+      <div class="question-text" id="question-text">Caricamento...</div>
+      <div class="feedback" id="answer-feedback"></div>
+
+      <div class="answers">
+        <button class="answer-btn"></button>
+        <button class="answer-btn"></button>
+        <button class="answer-btn"></button>
+        <button class="answer-btn"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- XML delle domande -->
+  <script id="domande-xml" type="text/xml">
+<quiz>
+  <!-- Storia -->
+  <domanda categoria="Storia" valore="3">
+    <testo>In quale anno fu firmata la Dichiarazione Balfour?</testo>
+    <image></image>
+    <risposta corretta="true">1917</risposta>
+    <risposta corretta="false">1948</risposta>
+    <risposta corretta="false">1967</risposta>
+    <risposta corretta="false">1922</risposta>
+  </domanda>
+
+  <domanda categoria="Storia" valore="2">
+    <testo>Quale organizzazione sionista fu fondata da Theodor Herzl?</testo>
+    <image></image>
+    <risposta corretta="true">Organizzazione Sionista Mondiale</risposta>
+    <risposta corretta="false">Haganah</risposta>
+    <risposta corretta="false">Irgun</risposta>
+    <risposta corretta="false">Lehi</risposta>
+  </domanda>
+
+  <domanda categoria="Storia" valore="2">
+    <testo>Quando ebbe luogo la Prima Intifada?</testo>
+    <image></image>
+    <risposta corretta="true">1987-1993</risposta>
+    <risposta corretta="false">2000-2005</risposta>
+    <risposta corretta="false">1967-1970</risposta>
+    <risposta corretta="false">1973-1974</risposta>
+  </domanda>
+
+  <domanda categoria="Storia" valore="3">
+    <testo>Chi era il leader dell'OLP per la maggior parte della sua storia?</testo>
+    <image></image>
+    <risposta corretta="true">Yasser Arafat</risposta>
+    <risposta corretta="false">Mahmoud Abbas</risposta>
+    <risposta corretta="false">Ismail Haniyeh</risposta>
+    <risposta corretta="false">Ahmed Shukeiri</risposta>
+  </domanda>
+
+  <domanda categoria="Storia" valore="2">
+    <testo>In quale anno Israele ed Egitto firmarono il trattato di pace?</testo>
+    <image></image>
+    <risposta corretta="true">1979</risposta>
+    <risposta corretta="false">1993</risposta>
+    <risposta corretta="false">1967</risposta>
+    <risposta corretta="false">1982</risposta>
+  </domanda>
+
+  <domanda categoria="Storia" valore="3">
+    <testo>Quale primo ministro israeliano fu assassinato nel 1995?</testo>
+    <image></image>
+    <risposta corretta="true">Yitzhak Rabin</risposta>
+    <risposta corretta="false">Menachem Begin</risposta>
+    <risposta corretta="false">Ariel Sharon</risposta>
+    <risposta corretta="false">Shimon Peres</risposta>
+  </domanda>
+
+  <domanda categoria="Storia" valore="2">
+    <testo>Quando fu fondata l'organizzazione Hamas?</testo>
+    <image></image>
+    <risposta corretta="true">1987</risposta>
+    <risposta corretta="false">1964</risposta>
+    <risposta corretta="false">1973</risposta>
+    <risposta corretta="false">1993</risposta>
+  </domanda>
+
+  <domanda categoria="Storia" valore="2">
+    <testo>Quale evento storico avvenne nel 1947 riguardo alla Palestina?</testo>
+    <image></image>
+    <risposta corretta="true">Piano di Partizione dell'ONU</risposta>
+    <risposta corretta="false">Dichiarazione Balfour</risposta>
+    <risposta corretta="false">Guerra dei Sei Giorni</risposta>
+    <risposta corretta="false">Accordi di Oslo</risposta>
+  </domanda>
+
+  <domanda categoria="Storia" valore="3">
+    <testo>Chi era il presidente egiziano che firmò la pace con Israele?</testo>
+    <image></image>
+    <risposta corretta="true">Anwar Sadat</risposta>
+    <risposta corretta="false">Gamal Abdel Nasser</risposta>
+    <risposta corretta="false">Hosni Mubarak</risposta>
+    <risposta corretta="false">King Farouk</risposta>
+  </domanda>
+
+  <domanda categoria="Storia" valore="2">
+    <testo>Quando ebbe luogo la Seconda Intifada?</testo>
+    <image></image>
+    <risposta corretta="true">2000-2005</risposta>
+    <risposta corretta="false">1987-1993</risposta>
+    <risposta corretta="false">1967-1970</risposta>
+    <risposta corretta="false">1973-1974</risposta>
+  </domanda>
+
+  <domanda categoria="Storia" valore="3">
+    <testo>Quale accordo del 1978 portò alla pace tra Egitto e Israele?</testo>
+    <image></image>
+    <risposta corretta="true">Accordi di Camp David</risposta>
+    <risposta corretta="false">Accordi di Oslo</risposta>
+    <risposta corretta="false">Trattato di Washington</risposta>
+    <risposta corretta="false">Dichiarazione Balfour</risposta>
+  </domanda>
+
+  <domanda categoria="Storia" valore="2">
+    <testo>Chi fu il primo leader dell'Autorità Palestinese?</testo>
+    <image></image>
+    <risposta corretta="true">Yasser Arafat</risposta>
+    <risposta corretta="false">Mahmoud Abbas</risposta>
+    <risposta corretta="false">Ismail Haniyeh</risposta>
+    <risposta corretta="false">Ahmed Qurei</risposta>
+  </domanda>
+
+  <domanda categoria="Storia" valore="2">
+    <testo>In quale anno Israele si ritirò unilateralmente dalla Striscia di Gaza?</testo>
+    <image></image>
+    <risposta corretta="true">2005</risposta>
+    <risposta corretta="false">2000</risposta>
+    <risposta corretta="false">1993</risposta>
+    <risposta corretta="false">2014</risposta>
+  </domanda>
+
+  <domanda categoria="Storia" valore="3">
+    <testo>Quale operazione militare israeliana ebbe luogo a Gaza nel 2014?</testo>
+    <image></image>
+    <risposta corretta="true">Operazione Margine Protettivo</risposta>
+    <risposta corretta="false">Operazione Piombo Fuso</risposta>
+    <risposta corretta="false">Operazione Colonna di Nuvola</risposta>
+    <risposta corretta="false">Operazione Scudo Difensivo</risposta>
+  </domanda>
+
+  <domanda categoria="Storia" valore="2">
+    <testo>Quando Hamas vinse le elezioni legislative palestinesi?</testo>
+    <image></image>
+    <risposta corretta="true">2006</risposta>
+    <risposta corretta="false">2000</risposta>
+    <risposta corretta="false">1996</risposta>
+    <risposta corretta="false">2012</risposta>
+  </domanda>
+
+  <domanda categoria="Storia" valore="3">
+    <testo>Chi era il primo ministro israeliano durante la Guerra dei Sei Giorni?</testo>
+    <image></image>
+    <risposta corretta="true">Levi Eshkol</risposta>
+    <risposta corretta="false">David Ben-Gurion</risposta>
+    <risposta corretta="false">Golda Meir</risposta>
+    <risposta corretta="false">Menachem Begin</risposta>
+  </domanda>
+
+  <domanda categoria="Storia" valore="2">
+    <testo>Quale paese mediò gli Accordi di Oslo?</testo>
+    <image></image>
+    <risposta corretta="true">Norvegia</risposta>
+    <risposta corretta="false">Stati Uniti</risposta>
+    <risposta corretta="false">Egitto</risposta>
+    <risposta corretta="false">Giordania</risposta>
+  </domanda>
+
+  <domanda categoria="Storia" valore="2">
+    <testo>Quando Israele annesse ufficialmente Gerusalemme Est?</testo>
+    <image></image>
+    <risposta corretta="true">1980</risposta>
+    <risposta corretta="false">1967</risposta>
+    <risposta corretta="false">1948</risposta>
+    <risposta corretta="false">1993</risposta>
+  </domanda>
+
+  <domanda categoria="Storia" valore="3">
+    <testo>Quale risoluzione ONU chiede il ritiro israeliano dai territori occupati nel 1967?</testo>
+    <image></image>
+    <risposta corretta="true">Risoluzione 242</risposta>
+    <risposta corretta="false">Risoluzione 181</risposta>
+    <risposta corretta="false">Risoluzione 338</risposta>
+    <risposta corretta="false">Risoluzione 1322</risposta>
+  </domanda>
+
+  <domanda categoria="Storia" valore="2">
+    <testo>Chi era il ministro degli esteri israeliano durante gli Accordi di Oslo?</testo>
+    <image></image>
+    <risposta corretta="true">Shimon Peres</risposta>
+    <risposta corretta="false">Yitzhak Rabin</risposta>
+    <risposta corretta="false">Benjamin Netanyahu</risposta>
+    <risposta corretta="false">Ehud Barak</risposta>
+  </domanda>
+
+  <!-- Guerra -->
+  <domanda categoria="Guerra" valore="3">
+    <testo>Quale operazione militare israeliana del 2008-2009 colpì Gaza?</testo>
+    <image></image>
+    <risposta corretta="true">Operazione Piombo Fuso</risposta>
+    <risposta corretta="false">Operazione Margine Protettivo</risposta>
+    <risposta corretta="false">Operazione Colonna di Nuvola</risposta>
+    <risposta corretta="false">Operazione Scudo Difensivo</risposta>
+  </domanda>
+
+  <domanda categoria="Guerra" valore="2">
+    <testo>Quale città fu divisa tra Israele e Giordania dal 1948 al 1967?</testo>
+    <image></image>
+    <risposta corretta="true">Gerusalemme</risposta>
+    <risposta corretta="false">Tel Aviv</risposta>
+    <risposta corretta="false">Haifa</risposta>
+    <risposta corretta="false">Gaza</risposta>
+  </domanda>
+
+  <domanda categoria="Guerra" valore="2">
+    <testo>Quale gruppo armato palestinese controlla principalmente la Striscia di Gaza?</testo>
+    <image></image>
+    <risposta corretta="true">Hamas</risposta>
+    <risposta corretta="false">Fatah</risposta>
+    <risposta corretta="false">Jihad Islamica</risposta>
+    <risposta corretta="false">FPLP</risposta>
+  </domanda>
+
+  <domanda categoria="Guerra" valore="3">
+    <testo>Quale barriera di separazione costruì Israele in Cisgiordania?</testo>
+    <image></image>
+    <risposta corretta="true">Barriera di separazione israeliana</risposta>
+    <risposta corretta="false">Muro di Gaza</risposta>
+    <risposta corretta="false">Linea Verde</risposta>
+    <risposta corretta="false">Confine di armistizio</risposta>
+  </domanda>
+
+  <domanda categoria="Guerra" valore="2">
+    <testo>Quale città israeliana è spesso colpita da razzi da Gaza?</testo>
+    <image></image>
+    <risposta corretta="true">Sderot</risposta>
+    <risposta corretta="false">Haifa</risposta>
+    <risposta corretta="false">Tel Aviv</risposta>
+    <risposta corretta="false">Gerusalemme</risposta>
+  </domanda>
+
+  <domanda categoria="Guerra" valore="3">
+    <testo>Quale sistema di difesa antimissile usa Israele?</testo>
+    <image></image>
+    <risposta corretta="true">Iron Dome (Cupola di Ferro)</risposta>
+    <risposta corretta="false">Patriot</risposta>
+    <risposta corretta="false">Arrow</risposta>
+    <risposta corretta="false">David's Sling</risposta>
+  </domanda>
+
+  <domanda categoria="Guerra" valore="2">
+    <testo>Quale operazione militare israeliana del 2012 colpì Gaza?</testo>
+    <image></image>
+    <risposta corretta="true">Operazione Colonna di Nuvola</risposta>
+    <risposta corretta="false">Operazione Piombo Fuso</risposta>
+    <risposta corretta="false">Operazione Margine Protettivo</risposta>
+    <risposta corretta="false">Operazione Scudo Difensivo</risposta>
+  </domanda>
+
+  <domanda categoria="Guerra" valore="2">
+    <testo>Quale paese confinante con Israele ha firmato un trattato di pace nel 1994?</testo>
+    <image></image>
+    <risposta corretta="true">Giordania</risposta>
+    <risposta corretta="false">Egitto</risposta>
+    <risposta corretta="false">Siria</risposta>
+    <risposta corretta="false">Libano</risposta>
+  </domanda>
+
+  <domanda categoria="Guerra" valore="3">
+    <testo>Quale città della Cisgiordania è sede dell'Autorità Palestinese?</testo>
+    <image></image>
+    <risposta corretta="true">Ramallah</risposta>
+    <risposta corretta="false">Gerico</risposta>
+    <risposta corretta="false">Nablus</risposta>
+    <risposta corretta="false">Hebron</risposta>
+  </domanda>
+
+  <domanda categoria="Guerra" valore="2">
+    <testo>Quale organizzazione palestinese condusse il dirottamento aereo di Entebbe?</testo>
+    <image></image>
+    <risposta corretta="true">FPLP</risposta>
+    <risposta corretta="false">Hamas</risposta>
+    <risposta corretta="false">Fatah</risposta>
+    <risposta corretta="false">Jihad Islamica</risposta>
+  </domanda>
+
+  <domanda categoria="Guerra" valore="3">
+    <testo>Quale massacro di palestinesi avvenne in Libano nel 1982?</testo>
+    <image></image>
+    <risposta corretta="true">Massacro di Sabra e Shatila</risposta>
+    <risposta corretta="false">Massacro di Deir Yassin</risposta>
+    <risposta corretta="false">Massacro di Kafr Qasim</risposta>
+    <risposta corretta="false">Massacro di Hebron</risposta>
+  </domanda>
+
+  <domanda categoria="Guerra" valore="2">
+    <testo>Quale operazione israeliana liberò ostaggi a Entebbe nel 1976?</testo>
+    <image></image>
+    <risposta corretta="true">Operazione Entebbe</risposta>
+    <risposta corretta="false">Operazione Jonathan</risposta>
+    <risposta corretta="false">Operazione Thunderbolt</risposta>
+    <risposta corretta="false">Operazione Solomon</risposta>
+  </domanda>
+
+  <domanda categoria="Guerra" valore="2">
+    <testo>Quale città è considerata la capitale dell'Autorità Palestinese?</testo>
+    <image></image>
+    <risposta corretta="true">Ramallah</risposta>
+    <risposta corretta="false">Gerusalemme Est</risposta>
+    <risposta corretta="false">Gaza</risposta>
+    <risposta corretta="false">Betlemme</risposta>
+  </domanda>
+
+  <domanda categoria="Guerra" valore="3">
+    <testo>Quale risoluzione ONU del 1967 chiede il ritorno ai confini precedenti?</testo>
+    <image></image>
+    <risposta corretta="true">Risoluzione 242</risposta>
+    <risposta corretta="false">Risoluzione 181</risposta>
+    <risposta corretta="false">Risoluzione 338</risposta>
+    <risposta corretta="false">Risoluzione 194</risposta>
+  </domanda>
+
+  <domanda categoria="Guerra" valore="2">
+    <testo>Quale gruppo armato palestinese è noto per attacchi suicidi durante la Seconda Intifada?</testo>
+    <image></image>
+    <risposta corretta="true">Hamas</risposta>
+    <risposta corretta="false">Fatah</risposta>
+    <risposta corretta="false">OLP</risposta>
+    <risposta corretta="false">Tanzim</risposta>
+  </domanda>
+
+  <domanda categoria="Guerra" valore="3">
+    <testo>Quale città della Cisgiordania è sede della Tomba dei Patriarchi?</testo>
+    <image></image>
+    <risposta corretta="true">Hebron</risposta>
+    <risposta corretta="false">Gerico</risposta>
+    <risposta corretta="false">Nablus</risposta>
+    <risposta corretta="false">Betlemme</risposta>
+  </domanda>
+
+  <domanda categoria="Guerra" valore="2">
+    <testo>Quale operazione militare israeliana del 2002 colpì la Cisgiordania?</testo>
+    <image></image>
+    <risposta corretta="true">Operazione Scudo Difensivo</risposta>
+    <risposta corretta="false">Operazione Piombo Fuso</risposta>
+    <risposta corretta="false">Operazione Colonna di Nuvola</risposta>
+    <risposta corretta="false">Operazione Margine Protettivo</risposta>
+  </domanda>
+
+  <domanda categoria="Guerra" valore="2">
+    <testo>Quale paese non confina con Israele?</testo>
+    <image></image>
+    <risposta corretta="true">Arabia Saudita</risposta>
+    <risposta corretta="false">Egitto</risposta>
+    <risposta corretta="false">Giordania</risposta>
+    <risposta corretta="false">Libano</risposta>
+  </domanda>
+
+  <domanda categoria="Guerra" valore="3">
+    <testo>Quale città israeliana fu colpita da razzi di Hezbollah nel 2006?</testo>
+    <image></image>
+    <risposta corretta="true">Haifa</risposta>
+    <risposta corretta="false">Tel Aviv</risposta>
+    <risposta corretta="false">Gerusalemme</risposta>
+    <risposta corretta="false">Beersheba</risposta>
+  </domanda>
+
+  <domanda categoria="Guerra" valore="2">
+    <testo>Quale organizzazione palestinese è considerata moderata?</testo>
+    <image></image>
+    <risposta corretta="true">Fatah</risposta>
+    <risposta corretta="false">Hamas</risposta>
+    <risposta corretta="false">Jihad Islamica</risposta>
+    <risposta corretta="false">FPLP</risposta>
+  </domanda>
+
+  <!-- Geografia -->
+  <domanda categoria="Geografia" valore="3">
+    <testo>Quale mare si trova ad ovest di Israele?</testo>
+    <image></image>
+    <risposta corretta="true">Mar Mediterraneo</risposta>
+    <risposta corretta="false">Mar Rosso</risposta>
+    <risposta corretta="false">Mar Morto</risposta>
+    <risposta corretta="false">Mar di Galilea</risposta>
+  </domanda>
+
+  <domanda categoria="Geografia" valore="2">
+    <testo>Quale è il punto più basso della Terra?</testo>
+    <image></image>
+    <risposta corretta="true">Mar Morto</risposta>
+    <risposta corretta="false">Mar Rosso</risposta>
+    <risposta corretta="false">Valle del Giordano</risposta>
+    <risposta corretta="false">Deserto del Negev</risposta>
+  </domanda>
+
+  <domanda categoria="Geografia" valore="2">
+    <testo>Quale fiume segna parte del confine tra Israele e Giordania?</testo>
+    <image></image>
+    <risposta corretta="true">Giordano</risposta>
+    <risposta corretta="false">Nilo</risposta>
+    <risposta corretta="false">Eufrate</risposta>
+    <risposta corretta="false">Litani</risposta>
+  </domanda>
+
+  <domanda categoria="Geografia" valore="3">
+    <testo>Quale città portuale israeliana si trova sul Mediterraneo?</testo>
+    <image></image>
+    <risposta corretta="true">Haifa</risposta>
+    <risposta corretta="false">Eilat</risposta>
+    <risposta corretta="false">Tel Aviv</risposta>
+    <risposta corretta="false">Ashkelon</risposta>
+  </domanda>
+
+  <domanda categoria="Geografia" valore="2">
+    <testo>Quale deserto si trova nel sud di Israele?</testo>
+    <image></image>
+    <risposta corretta="true">Negev</risposta>
+    <risposta corretta="false">Sahara</risposta>
+    <risposta corretta="false">Arabico</risposta>
+    <risposta corretta="false">Siriano</risposta>
+  </domanda>
+
+  <domanda categoria="Geografia" valore="3">
+    <testo>Quale lago d'acqua dolce si trova nel nord di Israele?</testo>
+    <image></image>
+    <risposta corretta="true">Mar di Galilea</risposta>
+    <risposta corretta="false">Mar Morto</risposta>
+    <risposta corretta="false">Lago di Tiberiade</risposta>
+    <risposta corretta="false">Lago di Hula</risposta>
+  </domanda>
+
+  <domanda categoria="Geografia" valore="2">
+    <testo>Quale città palestinese è famosa per la Basilica della Natività?</testo>
+    <image></image>
+    <risposta corretta="true">Betlemme</risposta>
+    <risposta corretta="false">Gerico</risposta>
+    <risposta corretta="false">Ramallah</risposta>
+    <risposta corretta="false">Nablus</risposta>
+  </domanda>
+
+  <domanda categoria="Geografia" valore="2">
+    <testo>Quale stretto collega il Mar Rosso al Golfo di Aqaba?</testo>
+    <image></image>
+    <risposta corretta="true">Stretto di Tiran</risposta>
+    <risposta corretta="false">Stretto di Hormuz</risposta>
+    <risposta corretta="false">Stretto di Gibilterra</risposta>
+    <risposta corretta="false">Canale di Suez</risposta>
+  </domanda>
+
+  <domanda categoria="Geografia" valore="3">
+    <testo>Quale catena montuosa si trova in Cisgiordania?</testo>
+    <image></image>
+    <risposta corretta="true">Monti della Giudea</risposta>
+    <risposta corretta="false">Monti del Golan</risposta>
+    <risposta corretta="false">Monti Carmel</risposta>
+    <risposta corretta="false">Monti della Galilea</risposta>
+  </domanda>
+
+  <domanda categoria="Geografia" valore="2">
+    <testo>Quale città israeliana si trova sul Mar Rosso?</testo>
+    <image></image>
+    <risposta corretta="true">Eilat</risposta>
+    <risposta corretta="false">Haifa</risposta>
+    <risposta corretta="false">Tel Aviv</risposta>
+    <risposta corretta="false">Ashkelon</risposta>
+  </domanda>
+
+  <domanda categoria="Geografia" valore="3">
+    <testo>Quale pianura costiera si trova lungo il Mediterraneo in Israele?</testo>
+    <image></image>
+    <risposta corretta="true">Pianura di Sharon</risposta>
+    <risposta corretta="false">Pianura di Jezreel</risposta>
+    <risposta corretta="false">Valle del Giordano</risposta>
+    <risposta corretta="false">Alture del Golan</risposta>
+  </domanda>
+
+  <domanda categoria="Geografia" valore="2">
+    <testo>Quale città della Cisgiordania è una delle più antiche del mondo?</testo>
+    <image></image>
+    <risposta corretta="true">Gerico</risposta>
+    <risposta corretta="false">Ramallah</risposta>
+    <risposta corretta="false">Hebron</risposta>
+    <risposta corretta="false">Nablus</risposta>
+  </domanda>
+
+  <domanda categoria="Geografia" valore="2">
+    <testo>Quale regione settentrionale di Israele è nota per le sue colline?</testo>
+    <image></image>
+    <risposta corretta="true">Galilea</risposta>
+    <risposta corretta="false">Negev</risposta>
+    <risposta corretta="false">Golan</risposta>
+    <risposta corretta="false">Sharon</risposta>
+  </domanda>
+
+  <domanda categoria="Geografia" valore="3">
+    <testo>Quale fiume scorre attraverso la Striscia di Gaza?</testo>
+    <image></image>
+    <risposta corretta="true">Nessun fiume significativo</risposta>
+    <risposta corretta="false">Giordano</risposta>
+    <risposta corretta="false">Nilo</risposta>
+    <risposta corretta="false">Eufrate</risposta>
+  </domanda>
+
+  <domanda categoria="Geografia" valore="2">
+    <testo>Quale città israeliana è considerata la capitale economica?</testo>
+    <image></image>
+    <risposta corretta="true">Tel Aviv</risposta>
+    <risposta corretta="false">Gerusalemme</risposta>
+    <risposta corretta="false">Haifa</risposta>
+    <risposta corretta="false">Beersheba</risposta>
+  </domanda>
+
+  <domanda categoria="Geografia" valore="3">
+    <testo>Quale valle fertile si trova nel nord di Israele?</testo>
+    <image></image>
+    <risposta corretta="true">Valle di Jezreel</risposta>
+    <risposta corretta="false">Valle del Giordano</risposta>
+    <risposta corretta="false">Valle di Hula</risposta>
+    <risposta corretta="false">Valle di Beit She'an</risposta>
+  </domanda>
+
+  <domanda categoria="Geografia" valore="2">
+    <testo>Quale città palestinese è famosa per le sue università?</testo>
+    <image></image>
+    <risposta corretta="true">Nablus</risposta>
+    <risposta corretta="false">Gerico</risposta>
+    <risposta corretta="false">Betlemme</risposta>
+    <risposta corretta="false">Tulkarm</risposta>
+  </domanda>
+
+  <domanda categoria="Geografia" valore="2">
+    <testo>Quale regione è contesa tra Israele e Siria?</testo>
+    <image></image>
+    <risposta corretta="true">Alture del Golan</risposta>
+    <risposta corretta="false">Sinai</risposta>
+    <risposta corretta="false">Cisgiordania</risposta>
+    <risposta corretta="false">Striscia di Gaza</risposta>
+  </domanda>
+
+  <domanda categoria="Geografia" valore="3">
+    <testo>Quale città della Cisgiordania è sede dell'Università di Birzeit?</testo>
+    <image></image>
+    <risposta corretta="true">Birzeit</risposta>
+    <risposta corretta="false">Ramallah</risposta>
+    <risposta corretta="false">Nablus</risposta>
+    <risposta corretta="false">Hebron</risposta>
+  </domanda>
+
+  <domanda categoria="Geografia" valore="2">
+    <testo>Quale porto naturale si trova a nord di Israele?</testo>
+    <image></image>
+    <risposta corretta="true">Porto di Haifa</risposta>
+    <risposta corretta="false">Porto di Ashdod</risposta>
+    <risposta corretta="false">Porto di Eilat</risposta>
+    <risposta corretta="false">Porto di Tel Aviv</risposta>
+  </domanda>
+
+  <!-- Cultura e Società -->
+  <domanda categoria="Re" valore="3">
+    <testo>Quale religione è maggioritaria tra i palestinesi?</testo>
+    <image></image>
+    <risposta corretta="true">Islam</risposta>
+    <risposta corretta="false">Ebraismo</risposta>
+    <risposta corretta="false">Cristianesimo</risposta>
+    <risposta corretta="false">Druzo</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="2">
+    <testo>Quale lingua è parlata dalla maggioranza degli israeliani?</testo>
+    <image></image>
+    <risposta corretta="true">Ebraico</risposta>
+    <risposta corretta="false">Arabo</risposta>
+    <risposta corretta="false">Inglese</risposta>
+    <risposta corretta="false">Russo</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="2">
+    <testo>Quale piatto è comune sia in Israele che in Palestina?</testo>
+    <image></image>
+    <risposta corretta="true">Hummus</risposta>
+    <risposta corretta="false">Sushi</risposta>
+    <risposta corretta="false">Pizza</risposta>
+    <risposta corretta="false">Hamburger</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="3">
+    <testo>Quale festività ebraica commemora l'esodo dall'Egitto?</testo>
+    <image></image>
+    <risposta corretta="true">Pesach</risposta>
+    <risposta corretta="false">Hanukkah</risposta>
+    <risposta corretta="false">Rosh Hashanah</risposta>
+    <risposta corretta="false">Yom Kippur</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="2">
+    <testo>Quale strumento musicale è tradizionale nella musica araba palestinese?</testo>
+    <image></image>
+    <risposta corretta="true">Oud</risposta>
+    <risposta corretta="false">Violino</risposta>
+    <risposta corretta="false">Pianoforte</risposta>
+    <risposta corretta="false">Chitarra</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="2">
+    <testo>Quale città è sacra per ebrei, cristiani e musulmani?</testo>
+    <image></image>
+    <risposta corretta="true">Gerusalemme</risposta>
+    <risposta corretta="false">Mecca</risposta>
+    <risposta corretta="false">Roma</risposta>
+    <risposta corretta="false">Bethlehem</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="3">
+    <testo>Quale scrittore palestinese è famoso per "Men in the Sun"?</testo>
+    <image></image>
+    <risposta corretta="true">Ghassan Kanafani</risposta>
+    <risposta corretta="false">Mahmoud Darwish</risposta>
+    <risposta corretta="false">Edward Said</risposta>
+    <risposta corretta="false">Emile Habibi</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="2">
+    <testo>Quale poeta palestinese è considerato il poeta nazionale?</testo>
+    <image></image>
+    <risposta corretta="true">Mahmoud Darwish</risposta>
+    <risposta corretta="false">Ghassan Kanafani</risposta>
+    <risposta corretta="false">Edward Said</risposta>
+    <risposta corretta="false">Naguib Mahfouz</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="2">
+    <testo>Quale danza tradizionale è popolare in Palestina?</testo>
+    <image></image>
+    <risposta corretta="true">Dabke</risposta>
+    <risposta corretta="false">Flamenco</risposta>
+    <risposta corretta="false">Salsa</risposta>
+    <risposta corretta="false">Tango</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="3">
+    <testo>Quale università palestinese è una delle più prestigiose?</testo>
+    <image></image>
+    <risposta corretta="true">Università di Birzeit</risposta>
+    <risposta corretta="false">Università di Gaza</risposta>
+    <risposta corretta="false">Università di Hebron</risposta>
+    <risposta corretta="false">Università di Nablus</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="2">
+    <testo>Quale ricorrenza palestinese commemora la Nakba?</testo>
+    <image></image>
+    <risposta corretta="true">15 maggio</risposta>
+    <risposta corretta="false">14 maggio</risposta>
+    <risposta corretta="false">5 giugno</risposta>
+    <risposta corretta="false">29 novembre</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="2">
+    <testo>Quale città israeliana è nota per la sua vita notturna?</testo>
+    <image></image>
+    <risposta corretta="true">Tel Aviv</risposta>
+    <risposta corretta="false">Gerusalemme</risposta>
+    <risposta corretta="false">Haifa</risposta>
+    <risposta corretta="false">Beersheba</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="3">
+    <testo>Quale artista palestinese è famoso per i suoi dipinti politici?</testo>
+    <image></image>
+    <risposta corretta="true">Naji al-Ali</risposta>
+    <risposta corretta="false">Mahmoud Darwish</risposta>
+    <risposta corretta="false">Edward Said</risposta>
+    <risposta corretta="false">Ghassan Kanafani</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="2">
+    <testo>Quale piatto palestinese è a base di melanzane?</testo>
+    <image></image>
+    <risposta corretta="true">Mutabbal</risposta>
+    <risposta corretta="false">Falafel</risposta>
+    <risposta corretta="false">Shawarma</risposta>
+    <risposta corretta="false">Kunafa</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="2">
+    <testo>Quale festività musulmana segna la fine del Ramadan?</testo>
+    <image></image>
+    <risposta corretta="true">Eid al-Fitr</risposta>
+    <risposta corretta="false">Eid al-Adha</risposta>
+    <risposta corretta="false">Mawlid</risposta>
+    <risposta corretta="false">Ashura</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="3">
+    <testo>Quale scrittore israeliano ha vinto il Nobel per la letteratura?</testo>
+    <image></image>
+    <risposta corretta="true">S.Y. Agnon</risposta>
+    <risposta corretta="false">Amos Oz</risposta>
+    <risposta corretta="false">David Grossman</risposta>
+    <risposta corretta="false">A.B. Yehoshua</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="2">
+    <testo>Quale strumento musicale è tipico della musica ebraica?</testo>
+    <image></image>
+    <risposta corretta="true">Shofar</risposta>
+    <risposta corretta="false">Oud</risposta>
+    <risposta corretta="false">Qanun</risposta>
+    <risposta corretta="false">Ney</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="2">
+    <testo>Quale dolce palestinese è a base di formaggio e semolino?</testo>
+    <image></image>
+    <risposta corretta="true">Kunafa</risposta>
+    <risposta corretta="false">Baklava</risposta>
+    <risposta corretta="false">Basbousa</risposta>
+    <risposta corretta="false">Ma'amoul</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="3">
+    <testo>Quale città israeliana è un importante centro per la tecnologia?</testo>
+    <image></image>
+    <risposta corretta="true">Herzliya</risposta>
+    <risposta corretta="false">Gerusalemme</risposta>
+    <risposta corretta="false">Haifa</risposta>
+    <risposta corretta="false">Beersheba</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="2">
+    <testo>Quale tradizione palestinese coinvolge il ricamo?</testo>
+    <image></image>
+    <risposta corretta="true">Tatreez</risposta>
+    <risposta corretta="false">Dabke</risposta>
+    <risposta corretta="false">Oud</risposta>
+    <risposta corretta="false">Henna</risposta>
+  </domanda>
+
+  <!-- Politica e Attualità -->
+  <domanda categoria="Re" valore="3">
+    <testo>Chi è l'attuale presidente dell'Autorità Palestinese?</testo>
+    <image></image>
+    <risposta corretta="true">Mahmoud Abbas</risposta>
+    <risposta corretta="false">Yasser Arafat</risposta>
+    <risposta corretta="false">Ismail Haniyeh</risposta>
+    <risposta corretta="false">Marwan Barghouti</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="2">
+    <testo>Quale paese ha spostato la sua ambasciata a Gerusalemme nel 2018?</testo>
+    <image></image>
+    <risposta corretta="true">Stati Uniti</risposta>
+    <risposta corretta="false">Russia</risposta>
+    <risposta corretta="false">Germania</risposta>
+    <risposta corretta="false">Francia</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="2">
+    <testo>Quale organizzazione internazionale ha concesso lo status di stato osservatore alla Palestina?</testo>
+    <image></image>
+    <risposta corretta="true">ONU</risposta>
+    <risposta corretta="false">NATO</risposta>
+    <risposta corretta="false">UE</risposta>
+    <risposta corretta="false">FMI</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="3">
+    <testo>Quale primo ministro israeliano servì per più mandati?</testo>
+    <image></image>
+    <risposta corretta="true">Benjamin Netanyahu</risposta>
+    <risposta corretta="false">Yitzhak Rabin</risposta>
+    <risposta corretta="false">Ehud Barak</risposta>
+    <risposta corretta="false">Ariel Sharon</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="2">
+    <testo>Quale partito politico israeliano è generalmente di centro-sinistra?</testo>
+    <image></image>
+    <risposta corretta="true">Partito Laburista</risposta>
+    <risposta corretta="false">Likud</risposta>
+    <risposta corretta="false">Shas</risposta>
+    <risposta corretta="false">Yisrael Beiteinu</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="2">
+    <testo>Quale paese ha mediato recenti tregue tra Israele e Hamas?</testo>
+    <image></image>
+    <risposta corretta="true">Egitto</risposta>
+    <risposta corretta="false">Stati Uniti</risposta>
+    <risposta corretta="false">Qatar</risposta>
+    <risposta corretta="false">Giordania</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="3">
+    <testo>Quale risoluzione ONU del 2016 condannò gli insediamenti israeliani?</testo>
+    <image></image>
+    <risposta corretta="true">Risoluzione 2334</risposta>
+    <risposta corretta="false">Risoluzione 242</risposta>
+    <risposta corretta="false">Risoluzione 338</risposta>
+    <risposta corretta="false">Risoluzione 181</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="2">
+    <testo>Quale leader palestinese è imprigionato in Israele?</testo>
+    <image></image>
+    <risposta corretta="true">Marwan Barghouti</risposta>
+    <risposta corretta="false">Mahmoud Abbas</risposta>
+    <risposta corretta="false">Ismail Haniyeh</risposta>
+    <risposta corretta="false">Ahmed Qurei</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="2">
+    <testo>Quale città è al centro delle rivendicazioni di capitale sia israeliane che palestinesi?</testo>
+    <image></image>
+    <risposta corretta="true">Gerusalemme</risposta>
+    <risposta corretta="false">Tel Aviv</risposta>
+    <risposta corretta="false">Ramallah</risposta>
+    <risposta corretta="false">Haifa</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="3">
+    <testo>Quale organizzazione palestinese ha il controllo della sicurezza in alcune zone della Cisgiordania?</testo>
+    <image></image>
+    <risposta corretta="true">Forze di sicurezza palestinesi</risposta>
+    <risposta corretta="false">Hamas</risposta>
+    <risposta corretta="false">Jihad Islamica</risposta>
+    <risposta corretta="false">FPLP</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="2">
+    <testo>Quale partito politico israeliano rappresenta principalmente gli arabi israeliani?</testo>
+    <image></image>
+    <risposta corretta="true">Lista Comune</risposta>
+    <risposta corretta="false">Likud</risposta>
+    <risposta corretta="false">Yesh Atid</risposta>
+    <risposta corretta="false">Yamina</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="2">
+    <testo>Quale accordo del 2020 normalizzò le relazioni tra Israele ed Emirati Arabi Uniti?</testo>
+    <image></image>
+    <risposta corretta="true">Accordi di Abramo</risposta>
+    <risposta corretta="false">Accordi di Oslo</risposta>
+    <risposta corretta="false">Accordi di Camp David</risposta>
+    <risposta corretta="false">Trattato di Washington</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="3">
+    <testo>Quale paese non ha ancora riconosciuto lo stato di Israele?</testo>
+    <image></image>
+    <risposta corretta="true">Iran</risposta>
+    <risposta corretta="false">Egitto</risposta>
+    <risposta corretta="false">Giordania</risposta>
+    <risposta corretta="false">Turchia</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="2">
+    <testo>Quale città israeliana ha una grande popolazione araba?</testo>
+    <image></image>
+    <risposta corretta="true">Nazareth</risposta>
+    <risposta corretta="false">Tel Aviv</risposta>
+    <risposta corretta="false">Haifa</risposta>
+    <risposta corretta="false">Beersheba</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="2">
+    <testo>Quale organizzazione internazionale fornisce aiuti ai rifugiati palestinesi?</testo>
+    <image></image>
+    <risposta corretta="true">UNRWA</risposta>
+    <risposta corretta="false">UNHCR</risposta>
+    <risposta corretta="false">UNICEF</risposta>
+    <risposta corretta="false">OMS</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="3">
+    <testo>Quale leader israeliano fu primo ministro durante la Guerra del Libano del 2006?</testo>
+    <image></image>
+    <risposta corretta="true">Ehud Olmert</risposta>
+    <risposta corretta="false">Ariel Sharon</risposta>
+    <risposta corretta="false">Benjamin Netanyahu</risposta>
+    <risposta corretta="false">Ehud Barak</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="2">
+    <testo>Quale paese confina con Gaza a sud?</testo>
+    <image></image>
+    <risposta corretta="true">Egitto</risposta>
+    <risposta corretta="false">Giordania</risposta>
+    <risposta corretta="false">Arabia Saudita</risposta>
+    <risposta corretta="false">Siria</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="2">
+    <testo>Quale città della Cisgiordania è parzialmente controllata dall'Autorità Palestinese?</testo>
+    <image></image>
+    <risposta corretta="true">Area A della Cisgiordania</risposta>
+    <risposta corretta="false">Area B</risposta>
+    <risposta corretta="false">Area C</risposta>
+    <risposta corretta="false">Tutte le precedenti</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="3">
+    <testo>Quale risoluzione ONU del 1948 stabilì la creazione di uno stato palestinese?</testo>
+    <image></image>
+    <risposta corretta="true">Risoluzione 181</risposta>
+    <risposta corretta="false">Risoluzione 242</risposta>
+    <risposta corretta="false">Risoluzione 338</risposta>
+    <risposta corretta="false">Risoluzione 194</risposta>
+  </domanda>
+
+  <domanda categoria="Re" valore="2">
+    <testo>Quale organizzazione palestinese è considerata terroristica da Israele e Occidente?</testo>
+    <image></image>
+    <risposta corretta="true">Hamas</risposta>
+    <risposta corretta="false">Fatah</risposta>
+    <risposta corretta="false">OLP</risposta>
+    <risposta corretta="false">Autorità Palestinese</risposta>
+  </domanda>
+</quiz>
+</script>
+
+  <script src="../JavaScript/Domande.js"></script>
+</body>
+</html>
