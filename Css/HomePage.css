@@ -1,0 +1,208 @@
+:root {
+  --accent: #f3e8ff;
+  --bg-gradient: radial-gradient(circle at top left, #180040, #0a0018 60%);
+  --btn-gradient: linear-gradient(135deg, #7a1fff, #4400aa);
+  --card-bg: rgba(255, 255, 255, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', system-ui, sans-serif;
+  background: var(--bg-gradient);
+  color: var(--accent);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding: 2%;
+}
+
+/* --- CARD PRINCIPALE --- */
+.home-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(25px);
+  border-radius: 3%;
+  box-shadow: 0 0 2vw rgba(0, 0, 0, 0.8);
+  width: 70%;
+  padding: 4% 3%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 0.15vw solid rgba(255, 255, 255, 0.1);
+  animation: fadeIn 0.8s ease forwards;
+  position: relative;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(2%); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- CORONE DECORATIVE --- */
+.decor {
+  position: fixed; /* fissate rispetto alla finestra */
+  width: 6%;
+  top: 3%;
+  filter: drop-shadow(0 0 0.6vw gold);
+  opacity: 0.9;
+  transition: transform 0.3s ease;
+  z-index: 10; /* sopra tutti gli elementi */
+}
+
+.decor.left { left: 3%; transform: rotate(-10deg); }
+.decor.right { right: 3%; transform: rotate(10deg); }
+
+.decor:hover { transform: scale(1.08); }
+
+/* --- BANDIERE --- */
+.flags {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3%;
+  margin-bottom: 2%;
+  margin-top: 2%;
+}
+
+.flags img {
+  width: 8%;
+  aspect-ratio: 4/3;
+  border-radius: 8%;
+  box-shadow: 0 0 1vw rgba(255,255,255,0.3);
+  transition: transform 0.3s ease;
+}
+
+.flags img:hover { transform: scale(1.1); }
+
+/* --- PERSONAGGI --- */
+.character-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 4%;
+  width: 100%;
+  margin-bottom: 3%;
+}
+
+.character {
+  width: 6%;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.character:hover { transform: scale(1.1); filter: brightness(1.15); }
+
+.character img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: transparent;
+  border: none;
+}
+
+/* --- EFFETTI LUCE PERSONAGGI (più delicati) --- */
+.re img {
+  filter: drop-shadow(0 0 0.6vw gold);
+  width: 110%;
+}
+
+.storia img {
+  filter: drop-shadow(0 0 0.6vw #8b5a2b);
+  width: 110%;
+}
+
+.guerra img {
+  filter: drop-shadow(0 0 0.6vw #cccccc);
+    width: 110%;
+}
+
+.geografia img {
+  filter: drop-shadow(0 0 0.6vw #4db8ff);
+    width: 120%;
+}
+
+/* --- TESTO --- */
+.home-title {
+  font-size: 2.5vw;
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 0 0.8vw rgba(255,255,255,0.3);
+  margin-bottom: 0.5%;
+}
+
+.home-subtitle {
+  font-size: 1.4vw;
+  color: #ffcc70;
+  margin-bottom: 2%;
+  font-weight: 600;
+}
+
+.home-description {
+  font-size: 1.1vw;
+  color: rgba(243,232,255,0.92);
+  max-width: 75%;
+  line-height: 1.6;
+  margin-bottom: 3%;
+}
+
+/* --- BOTTONE --- */
+.start-btn {
+  background: var(--btn-gradient);
+  color: var(--accent);
+  border: none;
+  padding: 1.2% 3.5%;
+  border-radius: 5vw;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 1.2vw;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+  box-shadow: 0 0.8vw 2vw rgba(0, 0, 0, 0.7);
+}
+
+.start-btn:hover {
+  transform: scale(1.08) translateY(-0.3vw);
+  background: linear-gradient(135deg, #a64dff, #5a00b8);
+  box-shadow: 0 1vw 3vw rgba(0, 0, 0, 0.9);
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+  .home-card { width: 85%; }
+  .character { width: 9%; }
+  .flags img { width: 10%; }
+  .decor { width: 8%; top: 2%; }
+  .home-title { font-size: 4vw; }
+  .home-subtitle { font-size: 2.5vw; }
+  .home-description { font-size: 1.8vw; }
+  .start-btn { font-size: 2vw; padding: 2% 6%; }
+}
+
+@media (max-width: 768px) {
+  .home-card { width: 90%; padding: 6%; }
+  .character { width: 12%; }
+  .flags img { width: 14%; }
+  .decor { width: 10%; top: 2%; position: fixed; }
+  .home-title { font-size: 5vw; }
+  .home-subtitle { font-size: 3vw; }
+  .home-description { font-size: 2.5vw; max-width: 90%; }
+  .start-btn { font-size: 3vw; padding: 3% 8%; }
+}
+
+@media (max-width: 480px) {
+  .home-card { width: 95%; padding: 8%; }
+  .character { width: 18%; }
+  .flags img { width: 18%; }
+  .decor { width: 12%; top: 3%; position: fixed; }
+  .home-title { font-size: 6vw; }
+  .home-subtitle { font-size: 4vw; }
+  .home-description { font-size: 3.5vw; }
+  .start-btn { font-size: 4vw; padding: 4% 10%; }
+}
