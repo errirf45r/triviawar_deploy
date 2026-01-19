@@ -112,7 +112,7 @@ function selezionaRisposta(btn, risposta, risposte){
   }
 
   highlightCorrect(risposte);
-  setTimeout(nextQuestion,5000);
+  setTimeout(nextQuestion,2200);
 }
 
 // Evidenzia risposta corretta
@@ -143,7 +143,7 @@ function handleTimeout(){
   answerFeedback.textContent = "SBAGLIATO";
   answerFeedback.className = "feedback wrong";
   highlightCorrect(questions[currentQuestionIndex].risposte);
-  setTimeout(nextQuestion,5000);
+  setTimeout(nextQuestion,2200);
 }
 
 // Disabilita pulsanti risposte
@@ -251,5 +251,6 @@ if (closeBtn) {
     window.location.href = "../index.html";
   });
 }
+
 
 
