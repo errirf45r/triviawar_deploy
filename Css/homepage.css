@@ -206,3 +206,13 @@ body {
   .home-description { font-size: 3.5vw; }
   .start-btn { font-size: 4vw; padding: 4% 10%; }
 }
+.license-footer {
+  position: fixed;
+  bottom: 5px;
+  left: 8px;
+  font-size: 10px;
+  color: #888;
+  background: transparent;
+  z-index: 999;
+}
+
