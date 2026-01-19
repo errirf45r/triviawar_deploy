@@ -207,18 +207,7 @@ body {
   .start-btn { font-size: 4vw; padding: 4% 10%; }
 }
 
-#footer-licenza {
-  position: fixed;
-  bottom: 5px;
-  left: 5px;
 
-  font-size: 10px;
-  color: #777;
-
-  margin: 0;
-  padding: 0;
-  background: none;
-}
 
 
 
