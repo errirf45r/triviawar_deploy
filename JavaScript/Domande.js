@@ -112,7 +112,7 @@ function selezionaRisposta(btn, risposta, risposte){
   }
 
   highlightCorrect(risposte);
-  setTimeout(nextQuestion,1000);
+  setTimeout(nextQuestion,5000);
 }
 
 // Evidenzia risposta corretta
@@ -251,3 +251,4 @@ if (closeBtn) {
     window.location.href = "../index.html";
   });
 }
+
