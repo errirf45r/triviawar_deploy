@@ -1,255 +1,152 @@
-let allQuestions = [];
-let questions = [];
-let currentQuestionIndex = 0;
-let totalTime = 20;
-let timeLeft = totalTime;
-let timerInterval = null;
-let score = 0;
+const ruota = document.getElementById('ruota');
+const btn = document.getElementById('giraBtn');
+const risultato = document.getElementById('risultato');
+
+const immagini = ruota.querySelectorAll('.ruota img');
+
+const settori = [
+  { nome: "Re", start: 0, end: 90, centro: 45 },
+  { nome: "Storia", start: 90, end: 180, centro: 135 },
+  { nome: "Guerra", start: 180, end: 270, centro: 225 },
+  { nome: "Geografia", start: 270, end: 360, centro: 315 }
+];
+
+// ================== FRASI CASUALI ==================
+const frasiCasuali = [
+  "💡Dimostra quanto ne sai",
+  "🤔 Chissà quale categoria uscirà…",
+  "🔥 Pronto per la prossima sfida?",
+  "🍀 Incrocia le dita e gira!",
+  "⚡ Un nuovo round sta per iniziare!",
+  "✅Pronto per un nuovo round!",
+  "🎯Tocca a te! Sei pronto?"
+
+];
+
+function mostraFraseCasuale() {
+  const frase = frasiCasuali[Math.floor(Math.random() * frasiCasuali.length)];
+  risultato.innerHTML = `<span style="opacity:.85">${frase}</span>`;
+}
+
+// ================== STATO PARTITA ==================
+let rotazioneTot = 0;
 let partitaInCorso = false;
 let punteggioPartita = 0;
 
-const questionsPerRound = 5;
+// ================== UTILITY ==================
+function normalizza360(a) {
+  return ((a % 360) + 360) % 360;
+}
 
-const questionTextEl = document.getElementById("question-text");
-const answerBtns = document.querySelectorAll(".answer-btn");
-const timerBar = document.getElementById("timer-bar");
-const questionImage = document.getElementById("question-image");
-const answerFeedback = document.getElementById("answer-feedback");
+function trovaSettoreDaAngolo(ang) {
+  for (const s of settori) {
+    if (s.start <= ang && ang < s.end) return s;
+  }
+  return settori[0];
+}
 
-/* ===============================
-   STATO PARTITA
-================================ */
-function caricaStatoPartita() {
-  const partitaSalvata = localStorage.getItem("partitaInCorso");
+// ================== GESTIONE PARTITA ==================
+function controllaPartitaInCorso() {
+  const partitaSalvata = localStorage.getItem('partitaInCorso');
   if (partitaSalvata) {
-    const dati = JSON.parse(partitaSalvata);
-    partitaInCorso = dati.attiva;
-    punteggioPartita = dati.punteggio || 0;
+    const datiPartita = JSON.parse(partitaSalvata);
+    partitaInCorso = datiPartita.attiva;
+    punteggioPartita = datiPartita.punteggio || 0;
+
+    if (partitaInCorso) aggiornaDisplayPunteggio();
   }
 }
 
-/* ===============================
-   CARICAMENTO DOMANDE XML
-================================ */
-const selectedCategory = localStorage.getItem("categoria") || "Storia";
+function salvaStatoPartita() {
+  const datiPartita = {
+    attiva: partitaInCorso,
+    punteggio: punteggioPartita,
+    timestamp: Date.now()
+  };
+  localStorage.setItem('partitaInCorso', JSON.stringify(datiPartita));
+}
 
-const xmlText = document.getElementById("domande-xml").textContent;
-const xmlDoc = new DOMParser().parseFromString(xmlText, "text/xml");
-const domandeXml = xmlDoc.querySelectorAll("domanda");
+function iniziaNuovaPartita() {
+  partitaInCorso = true;
+  punteggioPartita = 0;
+  salvaStatoPartita();
+  aggiornaDisplayPunteggio();
+}
 
-domandeXml.forEach(d => {
-  const risposte = Array.from(d.querySelectorAll("risposta")).map(r => ({
-    text: r.textContent,
-    corretta: r.getAttribute("corretta") === "true"
-  }));
+function aggiornaDisplayPunteggio() {
+  let punteggioDiv = document.getElementById('punteggio');
+  if (!punteggioDiv) {
+    punteggioDiv = document.createElement('div');
+    punteggioDiv.id = 'punteggio';
+    punteggioDiv.style.cssText = `
+      margin-top: 1rem;
+      font-weight: 700;
+      color: gold;
+      text-shadow: 0 0 8px rgba(255,215,0,0.8);
+      animation: fadeCountdown 0.8s ease;
+    `;
+    risultato.appendChild(punteggioDiv);
+  }
+  punteggioDiv.innerHTML = `🎯 Punteggio: ${punteggioPartita}`;
+}
 
-  allQuestions.push({
-    categoria: d.getAttribute("categoria"),
-    testo: d.querySelector("testo").textContent,
-    image: d.querySelector("image")?.textContent || "",
-    valore: parseInt(d.getAttribute("valore")),
-    risposte: risposte
+// ================== LOGICA RUOTA ==================
+btn.addEventListener('click', () => {
+  btn.disabled = true;
+  mostraFraseCasuale();
+  risultato.style.color = "#ffffff";
+
+  if (!partitaInCorso) iniziaNuovaPartita();
+
+  const scelto = settori[Math.floor(Math.random() * settori.length)];
+  const rotTarget = normalizza360(360 - scelto.centro);
+  const giriFissi = 6 * 360;
+  rotazioneTot += giriFissi + rotTarget;
+
+  ruota.style.transition = "transform 4s cubic-bezier(0.25, 1, 0.5, 1)";
+  ruota.style.transform = `rotate(${rotazioneTot}deg)`;
+
+  immagini.forEach(img => {
+    img.style.transition = "transform 4s cubic-bezier(0.25, 1, 0.5, 1)";
+    img.style.transform = `rotate(${-rotazioneTot}deg)`;
   });
+
+  setTimeout(() => {
+    const angleAtTop = normalizza360(rotazioneTot);
+    const finalSector = trovaSettoreDaAngolo(360 - angleAtTop);
+
+    risultato.innerHTML = `
+      <span id="categoria">
+        Categoria: ${finalSector.nome}${finalSector.nome === "Re" ? " 👑" : ""}
+      </span>
+      <span id="countdown"></span>
+    `;
+
+    aggiornaDisplayPunteggio();
+    localStorage.setItem('categoria', finalSector.nome);
+    salvaStatoPartita();
+
+    let tempo = 3;
+    const countdownSpan = document.getElementById('countdown');
+
+    const interval = setInterval(() => {
+      if (tempo > 0) {
+        countdownSpan.textContent = tempo;
+      } else {
+        countdownSpan.textContent = "VIA!";
+        countdownSpan.classList.add('via');
+        clearInterval(interval);
+        setTimeout(() => {
+          window.location.href = "../Html/Domande.html";
+        }, 1000);
+      }
+      tempo--;
+    }, 1000);
+  }, 4300);
 });
 
-/* ===============================
-   SELEZIONE DOMANDE ROUND
-================================ */
-function selezionaDomandeRound() {
-  const filtrate = allQuestions.filter(d => d.categoria === selectedCategory);
-  filtrate.sort(() => Math.random() - 0.5);
-  questions = filtrate.slice(0, questionsPerRound);
-  questions.forEach(q => q.risposte.sort(() => Math.random() - 0.5));
-}
-
-/* ===============================
-   MOSTRA DOMANDA
-================================ */
-function showQuestion() {
-  answerFeedback.textContent = "";
-  answerFeedback.className = "feedback";
-
-  answerBtns.forEach(btn => {
-    btn.classList.remove("selected");
-    btn.disabled = false;
-    btn.style.background = "var(--btn-gradient)";
-  });
-
-  if (currentQuestionIndex >= questions.length) {
-    fineQuiz();
-    return;
-  }
-
-  const q = questions[currentQuestionIndex];
-  questionTextEl.textContent = q.testo;
-
-  if (q.image) {
-    questionImage.src = q.image;
-    questionImage.style.display = "block";
-  } else {
-    questionImage.style.display = "none";
-  }
-
-  answerBtns.forEach((btn, i) => {
-    const r = q.risposte[i];
-    btn.textContent = r.text;
-    btn.onclick = () => selezionaRisposta(btn, r, q.risposte);
-  });
-
-  startTimer();
-}
-
-/* ===============================
-   RISPOSTA
-================================ */
-function selezionaRisposta(btn, risposta, risposte) {
-  clearInterval(timerInterval);
-  disabilitaRisposte();
-  btn.classList.add("selected");
-
-  if (risposta.corretta) {
-    btn.style.background = "var(--correct)";
-    score += questions[currentQuestionIndex].valore;
-    answerFeedback.textContent = "CORRETTO";
-    answerFeedback.classList.add("correct");
-  } else {
-    btn.style.background = "var(--wrong)";
-    answerFeedback.textContent = "SBAGLIATO";
-    answerFeedback.classList.add("wrong");
-  }
-
-  evidenziaCorretta(risposte);
-  setTimeout(nextQuestion, 1000);
-}
-
-function evidenziaCorretta(risposte) {
-  risposte.forEach((r, i) => {
-    if (r.corretta) {
-      answerBtns[i].style.background = "var(--correct)";
-    }
-  });
-}
-
-/* ===============================
-   TIMER
-================================ */
-function startTimer() {
-  timeLeft = totalTime;
-  timerBar.style.width = "100%";
-
-  timerInterval = setInterval(() => {
-    timeLeft -= 0.1;
-    const percent = Math.max((timeLeft / totalTime) * 100, 0);
-    timerBar.style.width = percent + "%";
-
-    if (timeLeft <= 0) {
-      clearInterval(timerInterval);
-      timeout();
-    }
-  }, 100);
-}
-
-function timeout() {
-  disabilitaRisposte();
-  answerFeedback.textContent = "SBAGLIATO";
-  answerFeedback.className = "feedback wrong";
-  evidenziaCorretta(questions[currentQuestionIndex].risposte);
-  setTimeout(nextQuestion, 1000);
-}
-
-function disabilitaRisposte() {
-  answerBtns.forEach(btn => (btn.disabled = true));
-}
-
-/* ===============================
-   AVANZA
-================================ */
-function nextQuestion() {
-  currentQuestionIndex++;
-  showQuestion();
-}
-
-/* ===============================
-   FINE QUIZ
-================================ */
-function fineQuiz() {
-  if (partitaInCorso) {
-    punteggioPartita += score;
-    localStorage.setItem(
-      "partitaInCorso",
-      JSON.stringify({
-        attiva: true,
-        punteggio: punteggioPartita,
-        timestamp: Date.now()
-      })
-    );
-  }
-
-  document.querySelector(".answers").innerHTML = "";
-
-  questionTextEl.innerHTML = `
-    <div class="score-text">
-      <div>Round: <span>${score} 👑</span></div>
-      ${partitaInCorso ? `<div>Punteggio totale: <span>${punteggioPartita} 👑</span></div>` : ""}
-      <div>Categoria: ${selectedCategory}</div>
-    </div>
-
-    <div class="info-box">
-      ${partitaInCorso ? "Torna alla ruota per continuare la partita!" : "Partita conclusa!"}
-    </div>
-
-    <div class="final-buttons">
-      <button class="finish-btn" onclick="location.href='../Html/Ruota.html'">Torna alla Ruota</button>
-      <button class="finish-btn" onclick="concludiPartita()">Esci</button>
-    </div>
-  `;
-
-  questionImage.style.display = "none";
-  timerBar.style.width = "0%";
-
-  mostraCronologia();
-}
-
-/* ===============================
-   PARTITA & CRONOLOGIA
-================================ */
-function concludiPartita() {
-  if (partitaInCorso && punteggioPartita > 0) {
-    aggiungiCronologia(punteggioPartita, "Partita Completa");
-  }
-  localStorage.removeItem("partitaInCorso");
-  location.href = "../index.html";
-}
-
-function aggiungiCronologia(score, category) {
-  let history = JSON.parse(localStorage.getItem("quizScoreHistory") || "[]");
-  history.unshift({
-    score,
-    category,
-    date: new Date().toLocaleString("it-IT")
-  });
-  history = history.slice(0, 10);
-  localStorage.setItem("quizScoreHistory", JSON.stringify(history));
-}
-
-function mostraCronologia() {
-  const history = JSON.parse(localStorage.getItem("quizScoreHistory") || "[]");
-  const div = document.createElement("div");
-  div.className = "score-history";
-
-  div.innerHTML = history.length
-    ? `<h3>📊 Ultime partite</h3>
-       <ul>${history
-         .map(h => `<li>${h.category}: ${h.score} — ${h.date}</li>`)
-         .join("")}</ul>`
-    : "<p>Nessuna partita precedente</p>";
-
-  document.body.appendChild(div);
-}
-
-/* ===============================
-   AVVIO
-================================ */
-caricaStatoPartita();
-selezionaDomandeRound();
-showQuestion();
+// ================== AVVIO ==================
+document.addEventListener('DOMContentLoaded', () => {
+  controllaPartitaInCorso();
+  mostraFraseCasuale();
+});
