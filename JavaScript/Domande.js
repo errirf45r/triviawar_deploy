@@ -143,7 +143,7 @@ function handleTimeout(){
   answerFeedback.textContent = "SBAGLIATO";
   answerFeedback.className = "feedback wrong";
   highlightCorrect(questions[currentQuestionIndex].risposte);
-  setTimeout(nextQuestion,1000);
+  setTimeout(nextQuestion,5000);
 }
 
 // Disabilita pulsanti risposte
@@ -251,4 +251,5 @@ if (closeBtn) {
     window.location.href = "../index.html";
   });
 }
+
 
