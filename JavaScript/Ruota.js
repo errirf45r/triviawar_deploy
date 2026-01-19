@@ -7,10 +7,7 @@ let timerInterval = null;
 let score = 0;
 let partitaInCorso = false;
 let punteggioPartita = 0;
-const questionsPerRound = 5;
-
-// ⏱ TEMPO DI VISUALIZZAZIONE VERDE / ROSSO
-const feedbackDelay = 2500;
+const questionsPerRound = 5; // Numero di domande per round
 
 const questionTextEl = document.getElementById('question-text');
 const answerBtns = document.querySelectorAll('.answer-btn');
@@ -18,7 +15,7 @@ const timerBar = document.getElementById('timer-bar');
 const questionImage = document.getElementById('question-image');
 const answerFeedback = document.getElementById('answer-feedback');
 
-// ------------------ STATO PARTITA ------------------
+// Carica stato partita dal localStorage
 function caricaStatoPartita() {
   const partitaSalvata = localStorage.getItem('partitaInCorso');
   if (partitaSalvata) {
@@ -28,10 +25,10 @@ function caricaStatoPartita() {
   }
 }
 
-// ------------------ CARICAMENTO DOMANDE ------------------
+// Carica tutte le domande dal XML
 const selectedCategory = localStorage.getItem('categoria') || 'Storia';
 let xmlText = document.getElementById('domande-xml').textContent;
-let data = new DOMParser().parseFromString(xmlText, "text/xml");
+let data = (new DOMParser()).parseFromString(xmlText, "text/xml");
 let domandeXml = data.querySelectorAll('domanda');
 
 domandeXml.forEach(d => {
@@ -49,25 +46,27 @@ domandeXml.forEach(d => {
   });
 });
 
-// ------------------ SELEZIONE DOMANDE ------------------
+// Seleziona le domande per il round corrente
 function selezionaDomandeRound() {
   let domandeCategoria = allQuestions.filter(d => d.categoria === selectedCategory);
   domandeCategoria.sort(() => Math.random() - 0.5);
   questions = domandeCategoria.slice(0, questionsPerRound);
-  questions.forEach(q => q.risposte.sort(() => Math.random() - 0.5));
+  questions.forEach(q => {
+    q.risposte.sort(() => Math.random() - 0.5);
+  });
 }
 
 caricaStatoPartita();
 selezionaDomandeRound();
 showQuestion();
 
-// ------------------ MOSTRA DOMANDA ------------------
-function showQuestion() {
+// Mostra domanda corrente
+function showQuestion(){
   answerFeedback.textContent = "";
   answerFeedback.className = "feedback";
   answerBtns.forEach(btn => btn.classList.remove("selected"));
 
-  if (currentQuestionIndex >= questions.length) {
+  if(currentQuestionIndex >= questions.length){
     fineQuiz();
     return;
   }
@@ -75,14 +74,14 @@ function showQuestion() {
   let q = questions[currentQuestionIndex];
   questionTextEl.textContent = q.testo;
 
-  if (q.image) {
+  if(q.image){
     questionImage.src = q.image;
     questionImage.style.display = "block";
   } else {
     questionImage.style.display = "none";
   }
 
-  answerBtns.forEach((btn, i) => {
+  answerBtns.forEach((btn,i) => {
     let r = q.risposte[i];
     btn.textContent = r.text;
     btn.disabled = false;
@@ -93,104 +92,108 @@ function showQuestion() {
   startTimer();
 }
 
-// ------------------ SELEZIONE RISPOSTA ------------------
-function selezionaRisposta(btn, risposta, risposte) {
+// Gestione selezione risposta
+function selezionaRisposta(btn, risposta, risposte){
   clearInterval(timerInterval);
   disableAnswers();
   btn.classList.add("selected");
 
-  if (risposta.corretta) {
+  if(risposta.corretta){
     btn.style.background = 'var(--correct)';
     score += questions[currentQuestionIndex].valore;
     answerFeedback.textContent = "CORRETTO";
-    answerFeedback.className = "feedback correct";
+    answerFeedback.classList.add("correct");
   } else {
     btn.style.background = 'var(--wrong)';
     answerFeedback.textContent = "SBAGLIATO";
-    answerFeedback.className = "feedback wrong";
+    answerFeedback.classList.add("wrong");
   }
 
   highlightCorrect(risposte);
-
-  setTimeout(() => {
-    nextQuestion();
-  }, feedbackDelay);
+  setTimeout(nextQuestion,1000);
 }
 
-// ------------------ EVIDENZIA CORRETTA ------------------
-function highlightCorrect(risposte) {
-  risposte.forEach((r, i) => {
-    if (r.corretta) {
-      answerBtns[i].style.background = 'var(--correct)';
+// Evidenzia risposta corretta
+function highlightCorrect(risposte){
+  risposte.forEach((r,i) => {
+    if(r.corretta){
+      answerBtns[i].style.background='var(--correct)';
     }
   });
 }
 
-// ------------------ TIMER ------------------
-function startTimer() {
+// Timer
+function startTimer(){
   timeLeft = totalTime;
-  timerBar.style.width = '100%';
-
-  timerInterval = setInterval(() => {
+  timerBar.style.width='100%';
+  timerInterval = setInterval(()=>{
     timeLeft -= 0.1;
-    let percent = Math.max(timeLeft / totalTime * 100, 0);
+    let percent = Math.max(timeLeft/totalTime*100,0);
     timerBar.style.width = percent + '%';
-
-    if (timeLeft <= 0) {
+    if(timeLeft <= 0){
       clearInterval(timerInterval);
       handleTimeout();
     }
-  }, 100);
+  },100);
 }
 
-// ------------------ TIMEOUT ------------------
-function handleTimeout() {
+// Timeout risposta
+function handleTimeout(){
   disableAnswers();
   answerFeedback.textContent = "SBAGLIATO";
   answerFeedback.className = "feedback wrong";
-
   highlightCorrect(questions[currentQuestionIndex].risposte);
-
-  setTimeout(() => {
-    nextQuestion();
-  }, feedbackDelay);
+  setTimeout(nextQuestion,1000);
 }
 
-// ------------------ UTIL ------------------
-function disableAnswers() {
+// Disabilita pulsanti risposte
+function disableAnswers(){
   answerBtns.forEach(b => b.disabled = true);
 }
 
-function nextQuestion() {
+// Passa alla domanda successiva
+function nextQuestion(){
   currentQuestionIndex++;
   showQuestion();
 }
 
-// ------------------ FINE QUIZ ------------------
+// Fine quiz
 function fineQuiz() {
   if (partitaInCorso) {
     punteggioPartita += score;
-    localStorage.setItem("partitaInCorso", JSON.stringify({
+    const datiPartita = {
       attiva: true,
       punteggio: punteggioPartita,
       timestamp: new Date().getTime()
-    }));
+    };
+    localStorage.setItem("partitaInCorso", JSON.stringify(datiPartita));
   }
 
-  document.querySelector(".answers").innerHTML = "";
+  const answersDiv = document.querySelector(".answers");
+  answersDiv.innerHTML = "";
 
   questionTextEl.innerHTML = `
-    <div class="score-text" style="text-align:center">
+    <div class="score-text" style="text-align:center; display:flex; flex-direction:column; align-items:center; gap:0.8rem;">
       <div>Round: <span>${score} 👑</span></div>
-      ${partitaInCorso ? `<div>Punteggio totale: <span>${punteggioPartita} 👑</span></div>` : ""}
+      ${
+        partitaInCorso
+          ? `<div style="text-align:center;">Punteggio totale: <span>${punteggioPartita} 👑</span></div>`
+          : ""
+      }
       <div>Categoria: ${selectedCategory}</div>
     </div>
+
     <div class="info-box">
-      ${partitaInCorso ? "Torna alla ruota per continuare!" : "Partita conclusa!"}
+      ${
+        partitaInCorso
+          ? "Torna alla ruota per continuare la partita!"
+          : "Partita conclusa! Torna alla ruota per iniziare una nuova partita."
+      }
     </div>
-    <div class="final-buttons">
+
+    <div class="final-buttons" style="display:flex; flex-direction:row; justify-content:center; align-items:center; gap:1.5rem; flex-wrap:wrap; margin-top:1.5rem;">
       <button class="finish-btn" onclick="window.location.href='../Html/Ruota.html'">Torna alla Ruota</button>
-      <button class="finish-btn" onclick="concludiPartita()">Esci</button>
+      <button class="finish-btn" style="background:linear-gradient(135deg,#ff6b6b,#c44569)" onclick="concludiPartita()">Esci dal Gioco</button>
     </div>
   `;
 
@@ -199,37 +202,68 @@ function fineQuiz() {
   displayScoreHistory();
 }
 
-// ------------------ USCITA ------------------
+// Concludi partita e cancella stato
 function concludiPartita() {
   if (partitaInCorso && punteggioPartita > 0) {
-    addScoreToHistory(punteggioPartita, 'Partita Completa');
+    addScoreToHistory(punteggioPartita, 'Partita Completa', new Date().toLocaleString('it-IT'));
   }
   localStorage.removeItem('partitaInCorso');
   window.location.href = "../index.html";
 }
 
-// ------------------ CRONOLOGIA ------------------
-function addScoreToHistory(score, category) {
-  let history = JSON.parse(localStorage.getItem('quizScoreHistory') || '[]');
-  history.unshift({ score, category, date: new Date().toLocaleString('it-IT') });
-  history = history.slice(0, 10);
-  localStorage.setItem('quizScoreHistory', JSON.stringify(history));
+// Cronologia punteggi
+function addScoreToHistory(score, category, date) {
+  let scoreHistory = JSON.parse(localStorage.getItem('quizScoreHistory') || '[]');
+  scoreHistory.unshift({ score: score, category: category, date: date || new Date().toLocaleString('it-IT'), totalQuestions: questions.length });
+  if (scoreHistory.length > 10) {
+    scoreHistory = scoreHistory.slice(0, 10);
+  }
+  localStorage.setItem('quizScoreHistory', JSON.stringify(scoreHistory));
 }
 
+// Mostra cronologia
 function displayScoreHistory() {
-  let history = JSON.parse(localStorage.getItem('quizScoreHistory') || '[]');
-  const div = document.createElement('div');
-  div.className = 'score-history';
-  div.innerHTML = `<h3>📊 Ultime partite</h3>
-    ${history.length ? `<ul>${history.map(h => `<li>${h.category}: ${h.score} (${h.date})</li>`).join('')}</ul>` : '<p>Nessuna partita</p>'}`;
-  document.querySelector('.answers').after(div);
+  let scoreHistory = JSON.parse(localStorage.getItem('quizScoreHistory') || '[]');
+  const historyContainer = document.createElement('div');
+  historyContainer.className = 'score-history';
+  historyContainer.innerHTML = `
+    <h3>📊 Le tue ultime partite:</h3>
+    ${
+      scoreHistory.length > 0
+        ? `<ul>
+            ${scoreHistory.map(entry => `
+              <li>
+                <span>${entry.category}: ${entry.score} punti</span>
+                <span style="font-size:0.8rem; color:#ffffffaa;">${entry.date}</span>
+              </li>
+            `).join('')}
+          </ul>
+          <button class="finish-btn clear-scores" onclick="clearScoreHistory()">Cancella Cronologia</button>`
+        : '<p>Nessuna partita precedente</p>'
+    }
+  `;
+  const answersDiv = document.querySelector('.answers');
+  if (answersDiv && answersDiv.parentNode) {
+    answersDiv.parentNode.insertBefore(historyContainer, answersDiv.nextSibling);
+  }
 }
 
-// ------------------ CHIUSURA ------------------
+// Cancella cronologia
+function clearScoreHistory() {
+  if (confirm('Sei sicuro di voler cancellare tutta la cronologia dei punteggi?')) {
+    localStorage.removeItem('quizScoreHistory');
+    const historyContainer = document.querySelector('.score-history');
+    if (historyContainer) {
+      historyContainer.remove();
+    }
+    displayScoreHistory();
+  }
+}
+
 const closeBtn = document.getElementById("close-btn");
 if (closeBtn) {
-  closeBtn.onclick = () => {
+  closeBtn.addEventListener("click", () => {
     localStorage.removeItem('partitaInCorso');
     window.location.href = "../index.html";
-  };
+  });
 }
