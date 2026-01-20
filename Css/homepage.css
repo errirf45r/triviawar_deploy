@@ -25,7 +25,8 @@ body {
 .container{
   displayer: flex;
   flex-direction: column;
-  item-align: center;
+  align-items: center;
+  width: 70%;
 }
 /* --- CARD PRINCIPALE --- */
 .home-card {
@@ -237,6 +238,7 @@ body {
     margin-top: 4%;
   }
 }
+
 
 
 
