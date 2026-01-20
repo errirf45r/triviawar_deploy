@@ -206,50 +206,33 @@ body {
   .home-description { font-size: 3.5vw; }
   .start-btn { font-size: 4vw; padding: 4% 10%; }
 }
-/* --- FOOTER --- */
-.site-footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  padding: 0.8% 0;
-  background: rgba(10, 0, 24, 0.65);
-  backdrop-filter: blur(15px);
-  border-top: 0.1vw solid rgba(255, 255, 255, 0.08);
-  display: flex;
-  justify-content: center;
-  z-index: 5;
+/* --- LICENZA SOTTO BOTTONE --- */
+.license-link {
+  margin-top: 1.5%;
+  font-size: 0.75vw;
+  color: rgba(243, 232, 255, 0.6);
 }
 
-.footer-content {
-  font-size: 0.9vw;
-  color: rgba(243, 232, 255, 0.75);
-  display: flex;
-  align-items: center;
-  gap: 0.6vw;
-}
-
-.footer-content a {
+.license-link a {
   color: #ffcc70;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
-.footer-content a:hover {
+.license-link a:hover {
   color: #fff;
-  text-shadow: 0 0 0.6vw rgba(255, 204, 112, 0.8);
+  text-shadow: 0 0 0.5vw rgba(255, 204, 112, 0.8);
 }
 
-.divider {
-  opacity: 0.5;
-}
-
-/* --- FOOTER RESPONSIVE --- */
+/* Responsive */
 @media (max-width: 768px) {
-  .footer-content {
+  .license-link {
     font-size: 2.5vw;
+    margin-top: 4%;
   }
 }
+
 
 
 
