@@ -23,11 +23,6 @@ body {
   padding: 2%;
 }
 
-.container {
-  align-intems: center;
-  width: 70%;
-}
-
 /* --- CARD PRINCIPALE --- */
 .home-card {
   background: var(--card-bg);
@@ -212,7 +207,40 @@ body {
   .start-btn { font-size: 4vw; padding: 4% 10%; }
 }
 
+.license-link {
+  margin-top: 1.5%;
+  font-size: 0.9vw;
+  color: rgba(243,232,255,0.7);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
 
+.license-link:hover {
+  transform: scale(1.05);
+}
 
+.license-text {
+  color: #ffcc70;
+  font-weight: 600;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
 
+.license-link:hover .license-text {
+  color: #ffd98a;
+}
 
+/* Responsive */
+@media (max-width: 768px) {
+  .license-link {
+    font-size: 2.5vw;
+    margin-top: 3%;
+  }
+}
+
+@media (max-width: 480px) {
+  .license-link {
+    font-size: 3.5vw;
+  }
+}
